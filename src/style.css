@@ -1,0 +1,37 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+#alphabetLetter,
+#hyphenOrApostrophe {
+  margin: 10px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#alphabetLetter {
+  border: solid 1px white;
+}
+#hyphenOrApostrophe {
+}
+
+#designLetter {
+    border: solid 1px white;
+    padding:2px;
+    width:30px;
+    height:30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: green;
+}
+
+#word {
+    display:flex;
+    justify-content: center;
+    align-items: flex-end;
+}

@@ -1,11 +1,6 @@
-import nextStep from './asset/hangmans-visual';
-import { getWord } from './get-word';
-import './style.css'
+import {  displayPendu } from "./dom";
+import "./style.css";
 import "virtual:uno.css";
 
-const btn = document.querySelector("button")! as HTMLButtonElement;
+await displayPendu();
 
-btn.addEventListener("click", async (_) => {
-  nextStep();
-  console.log(await getWord());
-});
