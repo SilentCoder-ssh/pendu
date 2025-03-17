@@ -8,8 +8,11 @@ export const removeLetters = (array: string[], letters: string[]) =>
 export const alphabet = createAlphabet();
 
 export const displayMaskWord = (maskWord: string[]) => {
-  [...maskWord].forEach((e) => displayLetter(e, wordElement, "alphabet"));
+  [...maskWord].forEach((e) => displayLetter(e, wordElement, "alphabetLetter"));
 };
+
+export const isWin = () =>
+  pendu.maskWord.join("").toLowerCase() === pendu.word.toLowerCase();
 
 export const generatePendu = async () => await getWord();
 

@@ -1,37 +1,256 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', Arial, sans-serif;
 }
 
-#alphabetLetter,
-#hyphenOrApostrophe {
-  margin: 10px;
+body {
+  background-color: #0c0c0c;
+  color: #f1f1f1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+#game-container {
+  max-width: 800px;
+  width: 100%;
+  background-color: #121212;
+  border-radius: 6px;
+  padding: 25px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  border: 1px solid #222;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #ff1a1a;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+canvas {
+  background-color: #1e1e1e;
+  border-radius: 6px;
+  margin: 0 auto 20px;
+  display: block;
+  max-width: 100%;
+  border: 1px solid #333;
+  box-shadow: 0 0 10px rgba(255, 26, 26, 0.1);
+}
+
+#word-container {
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  border: 1px solid #333;
+}
+
+#word {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#designLetter {
   width: 40px;
   height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #ff1a1a;
+  color: white;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+}
+
+.letter-space {
+  position: relative;
+  margin: 0 3px;
+}
+
+.letter-underline {
+  display: block;
+  width: 35px;
+  height: 3px;
+  background-color: #ff1a1a;
+  margin-top: 5px;
+}
+
+#alphabet-container {
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  border: 1px solid #333;
+}
+
+#alphabet {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(38px, 1fr));
+  gap: 8px;
+  justify-content: center;
+}
+
+#alphabetLetter, 
+#hyphenOrApostrophe {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  user-select: none;
+  text-transform: uppercase;
 }
 
 #alphabetLetter {
-  border: solid 1px white;
+  background-color: #2a2a2a;
+  color: #f1f1f1;
+  border: 1px solid #3c3c3c;
 }
+
+#alphabetLetter:hover {
+  background-color: #ff1a1a;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(255, 26, 26, 0.5);
+}
+
+#alphabetLetter:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px rgba(255, 26, 26, 0.5);
+}
+
+#alphabetLetter.used {
+  background-color: #333;
+  color: #666;
+  border-color: #444;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  opacity: 0.6;
+}
+
 #hyphenOrApostrophe {
+  background-color: #1e1e1e;
+  color: #ff1a1a;
+  border: 1px solid #3c3c3c;
 }
 
-#designLetter {
-    border: solid 1px white;
-    padding:2px;
-    width:30px;
-    height:30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: green;
+.game-status {
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 15px 0;
+  height: 30px;
+  color: #ff1a1a;
+  font-weight: 500;
 }
 
-#word {
-    display:flex;
-    justify-content: center;
-    align-items: flex-end;
+button {
+  background-color: #ff1a1a;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 10px auto 0;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+button:hover {
+  background-color: #e60000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 26, 26, 0.4);
+}
+
+button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(255, 26, 26, 0.4);
+}
+
+/* Styles pour la victoire et la défaite */
+.victory-message {
+  color: #33ff33;
+  animation: pulse 1.5s infinite;
+}
+
+.defeat-message {
+  color: #ff1a1a;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+/* Styles responsive */
+@media (max-width: 768px) {
+  #alphabet {
+    grid-template-columns: repeat(auto-fill, minmax(35px, 1fr));
+    gap: 6px;
+  }
+  
+  #alphabetLetter, 
+  #hyphenOrApostrophe,
+  #designLetter {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+  
+  button {
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  #game-container {
+    padding: 15px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  #alphabet {
+    grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+    gap: 5px;
+  }
+  
+  #alphabetLetter, 
+  #hyphenOrApostrophe,
+  #designLetter {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+  }
+  
+  .letter-underline {
+    width: 25px;
+  }
 }
